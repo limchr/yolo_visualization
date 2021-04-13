@@ -1,5 +1,8 @@
 <!doctype html>
 <meta charset="utf-8">
+
+<link href="style.css" rel="stylesheet">
+
 <script src="https://distill.pub/template.v1.js"></script>
 
 <script type="text/front-matter">
@@ -16,22 +19,48 @@
 </script>
 
 <dt-article>
-  <h1>Hello World</h1>
-  <h2>A description of the article</h2>
+  <h1>YOLOv4 Receptive Field Visualization</h1>
+  <h2>Just some interactive animations for visualizing YOLOv4<dt-cite key="bochkovskiy2020yolov4"></dt-cite> state of the art object detection approach</h2>
   <dt-byline></dt-byline>
   <p>This is the first paragraph of the article.</p>
-  <p>We can also cite <dt-cite key="gregor2015draw"></dt-cite> external publications.</p>
+  <p>We can also cite external publications.</p>
+
+
+<h2> Static normalized gradient on large grid (13x13) with XYWHCP neurons active </h2>
+<div id="lxywhcp" class="visu"></div>
+
+<h2> Static normalized gradient on large grid (13x13) with XY neurons active </h2>
+<div id="lxy" class="visu"></div>
+
+<h2> Static normalized gradient on large grid (13x13) with WH neurons active </h2>
+<div id="lwh" class="visu"></div>
+
+<h2> Static normalized gradient on large grid (13x13) with C neuron active </h2>
+<div id="lc" class="visu"></div>
+
+<h2> Static normalized gradient on large grid (13x13) with P neurons active </h2>
+<div id="lp" class="visu"></div>
+
+
+
 </dt-article>
 
 <dt-appendix>
 </dt-appendix>
 
 <script type="text/bibliography">
-  @article{gregor2015draw,
-    title={DRAW: A recurrent neural network for image generation},
-    author={Gregor, Karol and Danihelka, Ivo and Graves, Alex and Rezende, Danilo Jimenez and Wierstra, Daan},
-    journal={arXivreprint arXiv:1502.04623},
-    year={2015},
-    url={https://arxiv.org/pdf/1502.04623.pdf}
-  }
+
+
+@article{bochkovskiy2020yolov4,
+  title={Yolov4: Optimal speed and accuracy of object detection},
+  author={Bochkovskiy, Alexey and Wang, Chien-Yao and Liao, Hong-Yuan Mark},
+  journal={arXiv preprint arXiv:2004.10934},
+  year={2020}
+}
+
 </script>
+
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/grid_visu.js"></script>
+
