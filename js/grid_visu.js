@@ -1,22 +1,36 @@
+  var base_img = '0'
+  var img_dir = 'figs';
+
+  var base_img_dir = 'static-grad';
 
 
 document.addEventListener("DOMContentLoaded", function(event) {
-
-	base_img = '0'
-	img_dir = 'figs';
-
-    base_img_dir = 'static-grad';
-
-
-	register_grid_visu('lxywhcp', base_img, img_dir, base_img_dir, '--l_xywhcp', 13, 13, 1, 1);
-	register_grid_visu('lxy', base_img, img_dir, base_img_dir, '--l_xy----', 13, 13, 1, 1);
-	register_grid_visu('lwh', base_img, img_dir, base_img_dir, '--l_--wh--', 13, 13, 1, 1);
-	register_grid_visu('lc', base_img, img_dir, base_img_dir, '--l_----c-', 13, 13, 1, 1);
-	register_grid_visu('lp', base_img, img_dir, base_img_dir, '--l_-----p', 13, 13, 1, 1);
+  register_visu();
 
 });
 
+function reload_visu() {
+  unregister_visu();
+  register_visu();
 
+}
+
+function register_visu() {
+  register_grid_visu('lxywhcp', base_img, img_dir, base_img_dir, '--l_xywhcp', 13, 13, 1, 1);
+  register_grid_visu('lxy', base_img, img_dir, base_img_dir, '--l_xy----', 13, 13, 1, 1);
+  register_grid_visu('lwh', base_img, img_dir, base_img_dir, '--l_--wh--', 13, 13, 1, 1);
+  register_grid_visu('lc', base_img, img_dir, base_img_dir, '--l_----c-', 13, 13, 1, 1);
+  register_grid_visu('lp', base_img, img_dir, base_img_dir, '--l_-----p', 13, 13, 1, 1);
+
+  register_grid_visu('sxy', base_img, img_dir, base_img_dir, 's--_xy----', 13, 13, 4, 4);
+  register_grid_visu('swh', base_img, img_dir, base_img_dir, 's--_--wh--', 13, 13, 4, 4);
+}
+
+
+
+function unregister_visu() {
+  $('.visu').html('');
+}
 
 function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_prefix, num_x, num_y, mul_x, mul_y) {
     outer_div = $('#'+outer_div_id);
@@ -53,20 +67,26 @@ function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_p
 
 //     });
 
-    base_img_file = new Image;
+  base_img_file = new Image;
 	base_img_file.src = img_dir+"/"+base_img+"/"+base_img+".jpg";
 	base_img_file.onload = function() {
 	    cl.drawImage(this, 0,0, 416, 416,0,0,canv_left[0].width,canv_left[0].height);
 	};
 
+  base_img_file = new Image;
+  base_img_file.src = img_dir+"/instruction.jpg";
+  base_img_file.onload = function() {
+      cr.drawImage(this, 0,0, 416, 416,0,0,canv_right[0].width,canv_right[0].height);
+  };
+
 
 	canv_left[0].addEventListener('mousemove', function(e) {
 		var mouse = get_mouse_xy(this,e);
         
-        var grid_pos = [Math.floor((mouse[0]/this.width)*this.num_x),Math.floor((mouse[1]/this.height)*this.num_y)];
+    var grid_pos = [Math.floor((mouse[0]/this.width)*this.num_x),Math.floor((mouse[1]/this.height)*this.num_y)];
 
 
-        file_name = this.img_dir+'/'+this.base_img+'/'+this.base_dir+'/'+this.sub_img_prefix+'_'+pad(grid_pos[0],5)+'_'+pad(grid_pos[1],5)+'.jpg';
+    file_name = this.img_dir+'/'+this.base_img+'/'+this.base_dir+'/'+this.sub_img_prefix+'_'+pad(grid_pos[0]*mul_x,5)+'_'+pad(grid_pos[1]*mul_y,5)+'.jpg';
 
 		base_img_file = new Image;
 		base_img_file.src = file_name;
@@ -77,6 +97,15 @@ function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_p
 
 
 	}, true);
+
+  canv_left[0].addEventListener('mouseout', function(e) {
+
+  base_img_file = new Image;
+  base_img_file.src = img_dir+"/instruction.jpg";
+  base_img_file.onload = function() {
+      cr.drawImage(this, 0,0, 416, 416,0,0,canv_right[0].width,canv_right[0].height);
+  };
+  }, true);
 
  
 function pad(num, size) {

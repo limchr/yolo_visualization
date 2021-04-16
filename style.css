@@ -14,9 +14,18 @@
 }
 
 .canv {
-width:100%;
-height:100%;
-background-color: lightgray;
-border: 1px solid grey;
+	width:100%;
+	height:100%;
+	background-color: lightgray;
+	border: 1px solid grey;
 }
 
+#fig_select {
+	display: grid;
+    align-items: center;
+    grid-template-columns: 25% 25% 25% 25%;
+    background-color: darkred;
+}
+.fig_select_img {
+	width: 100%;
+}
