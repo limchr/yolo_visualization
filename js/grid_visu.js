@@ -1,5 +1,6 @@
   var base_img = '0'
   var img_dir = 'figs';
+  var gfx_dir = 'gfx';
 
   var base_img_dir = 'static-grad';
 
@@ -16,14 +17,20 @@ function reload_visu() {
 }
 
 function register_visu() {
+  register_grid_visu('bbslxywhcp', base_img, img_dir, 'bbs', '--l_xywhcp', 13, 13, 1, 1);
+  register_grid_visu('bbssxywhcp', base_img, img_dir, 'bbs', 's--_xywhcp', 13, 13, 4, 4);
+
   register_grid_visu('lxywhcp', base_img, img_dir, base_img_dir, '--l_xywhcp', 13, 13, 1, 1);
   register_grid_visu('lxy', base_img, img_dir, base_img_dir, '--l_xy----', 13, 13, 1, 1);
   register_grid_visu('lwh', base_img, img_dir, base_img_dir, '--l_--wh--', 13, 13, 1, 1);
   register_grid_visu('lc', base_img, img_dir, base_img_dir, '--l_----c-', 13, 13, 1, 1);
   register_grid_visu('lp', base_img, img_dir, base_img_dir, '--l_-----p', 13, 13, 1, 1);
 
+  register_grid_visu('sxywhcp', base_img, img_dir, base_img_dir, 's--_xywhcp', 13, 13, 4, 4);
   register_grid_visu('sxy', base_img, img_dir, base_img_dir, 's--_xy----', 13, 13, 4, 4);
   register_grid_visu('swh', base_img, img_dir, base_img_dir, 's--_--wh--', 13, 13, 4, 4);
+  register_grid_visu('sc', base_img, img_dir, base_img_dir, 's--_----c-', 13, 13, 4, 4);
+  register_grid_visu('sp', base_img, img_dir, base_img_dir, 's--_-----p', 13, 13, 4, 4);
 }
 
 
@@ -68,13 +75,13 @@ function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_p
 //     });
 
   base_img_file = new Image;
-	base_img_file.src = img_dir+"/"+base_img+"/"+base_img+".jpg";
+	base_img_file.src = img_dir+"/"+base_img+"/base_img.jpg";
 	base_img_file.onload = function() {
 	    cl.drawImage(this, 0,0, 416, 416,0,0,canv_left[0].width,canv_left[0].height);
 	};
 
   base_img_file = new Image;
-  base_img_file.src = img_dir+"/instruction.jpg";
+  base_img_file.src = gfx_dir+"/instruction.jpg";
   base_img_file.onload = function() {
       cr.drawImage(this, 0,0, 416, 416,0,0,canv_right[0].width,canv_right[0].height);
   };

@@ -28,31 +28,42 @@
 
 <h2> Select an Image for Visualization</h2>
 <div id="fig_select">
-	<img class="fig_select_img" src="figs/0/0.jpg" onclick="base_img = '0'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/1/1.jpg" onclick="base_img = '1'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/1/1.jpg" onclick="base_img = '1'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/1/1.jpg" onclick="base_img = '1'; reload_visu();"></img>
+	<img class="fig_select_img" src="figs/0/base_img.jpg" onclick="base_img = '0'; reload_visu();"></img>
+	<img class="fig_select_img" src="figs/1/base_img.jpg" onclick="base_img = '1'; reload_visu();"></img>
+	<img class="fig_select_img" src="figs/2/base_img.jpg" onclick="base_img = '2'; reload_visu();"></img>
+	<img class="fig_select_img" src="figs/3/base_img.jpg" onclick="base_img = '3'; reload_visu();"></img>
+	<img class="fig_select_img" src="figs/4/base_img.jpg" onclick="base_img = '4'; reload_visu();"></img>
 </div>
+
+<h2> Detected Bounding Boxes on large grid (13x13)</h2>
+<div id="bbslxywhcp" class="visu"></div>
+
+<h2> Detected Bounding Boxes on small grid (52x52)</h2>
+<div id="bbssxywhcp" class="visu"></div>
+
+
 
 <h2> Static normalized gradient on large grid (13x13) with XYWHCP neurons active </h2>
 <div id="lxywhcp" class="visu"></div>
-
 <h2> Static normalized gradient on large grid (13x13) with XY neurons active </h2>
 <div id="lxy" class="visu"></div>
-
 <h2> Static normalized gradient on large grid (13x13) with WH neurons active </h2>
 <div id="lwh" class="visu"></div>
-
 <h2> Static normalized gradient on large grid (13x13) with C neuron active </h2>
 <div id="lc" class="visu"></div>
-
 <h2> Static normalized gradient on large grid (13x13) with P neurons active </h2>
 <div id="lp" class="visu"></div>
 
-<h2> Static normalized gradient on small grid (52x52) with XY neurons active </h2>
+<h2> Static normalized gradient on small grid (52x52) with XYWHCP neurons active </h2>
+<div id="sxywhcp" class="visu"></div>
+<h2> Static normalized gradient on large grid (52x52) with XY neurons active </h2>
 <div id="sxy" class="visu"></div>
-<h2> Static normalized gradient on small grid (52x52) with WH neurons active </h2>
+<h2> Static normalized gradient on large grid (52x52) with WH neurons active </h2>
 <div id="swh" class="visu"></div>
+<h2> Static normalized gradient on large grid (52x52) with C neuron active </h2>
+<div id="sc" class="visu"></div>
+<h2> Static normalized gradient on large grid (52x52) with P neurons active </h2>
+<div id="sp" class="visu"></div>
 
 
 </dt-article>

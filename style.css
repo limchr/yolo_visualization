@@ -23,8 +23,8 @@
 #fig_select {
 	display: grid;
     align-items: center;
-    grid-template-columns: 25% 25% 25% 25%;
-    background-color: darkred;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    background-color: grey;
 }
 .fig_select_img {
 	width: 100%;
