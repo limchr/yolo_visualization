@@ -39,6 +39,8 @@ function unregister_visu() {
   $('.visu').html('');
 }
 
+
+
 function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_prefix, num_x, num_y, mul_x, mul_y) {
     outer_div = $('#'+outer_div_id);
     outer_div.append('<canvas id="'+outer_div_id+'_left_canvas" class="canv"/>');
@@ -114,41 +116,97 @@ function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_p
   };
   }, true);
 
- 
+}
+
+
+
+
+
+
+function register_grid_visu(outer_div_id, base_img, img_dir, base_dir, sub_img_prefix, num_x, num_y, mul_x, mul_y) {
+    outer_div = $('#'+outer_div_id);
+    outer_div.append('<canvas id="'+outer_div_id+'_left_canvas" class="canv"/>');
+    outer_div.append('<canvas id="'+outer_div_id+'_right_canvas" class="canv"/>');
+
+    canv_left = $('#'+outer_div_id+'_left_canvas');
+    canv_right = $('#'+outer_div_id+'_right_canvas');
+
+    s = canv_left.width();
+
+    canv_left[0].width = s;
+    canv_left[0].height = s;
+    canv_right[0].width = s;
+    canv_right[0].height = s;
+
+    var cl = canv_left[0].getContext('2d');
+    var cr = canv_right[0].getContext('2d');
+
+
+    canv_left[0].base_img = base_img;
+    canv_left[0].img_dir = img_dir;
+    canv_left[0].base_dir = base_dir;
+    canv_left[0].sub_img_prefix = sub_img_prefix;
+    canv_left[0].num_x = num_x;
+    canv_left[0].num_y = num_y;
+    canv_left[0].mul_x = mul_x;
+    canv_left[0].mul_y = mul_y;
+    canv_left[0].cr = cr;
+
+
+//     $('<img src="'+ img_dir+"/"+base_img+"/"+base_img+".jpg" +'">').load(function(){
+//         cl.drawImage(this, 0,0,this.width,this.height);
+
+//     });
+
+  base_img_file = new Image;
+	base_img_file.src = img_dir+"/"+base_img+"/base_img.jpg";
+	base_img_file.onload = function() {
+	    cl.drawImage(this, 0,0, 416, 416,0,0,canv_left[0].width,canv_left[0].height);
+	};
+
+  base_img_file = new Image;
+  base_img_file.src = gfx_dir+"/instruction.jpg";
+  base_img_file.onload = function() {
+      cr.drawImage(this, 0,0, 416, 416,0,0,canv_right[0].width,canv_right[0].height);
+  };
+
+
+	canv_left[0].addEventListener('mousemove', function(e) {
+		var mouse = get_mouse_xy(this,e);
+        
+    var grid_pos = [Math.floor((mouse[0]/this.width)*this.num_x),Math.floor((mouse[1]/this.height)*this.num_y)];
+
+
+    file_name = this.img_dir+'/'+this.base_img+'/'+this.base_dir+'/'+this.sub_img_prefix+'_'+pad(grid_pos[0]*mul_x,5)+'_'+pad(grid_pos[1]*mul_y,5)+'.jpg';
+
+		base_img_file = new Image;
+		base_img_file.src = file_name;
+		base_img_file.onload = function() {
+			cr.drawImage(this, 0,0, 416, 416,0,0,canv_right[0].width,canv_right[0].height);
+		};
+
+
+
+	}, true);
+
+  canv_left[0].addEventListener('mouseout', function(e) {
+
+  base_img_file = new Image;
+  base_img_file.src = img_dir+"/instruction.jpg";
+  base_img_file.onload = function() {
+      cr.drawImage(this, 0,0, 416, 416,0,0,canv_right[0].width,canv_right[0].height);
+  };
+  }, true);
+
+}
+
+
+
 function pad(num, size) {
     var s = num+"";
     while (s.length < size) s = "0" + s;
     return s;
 }
-
-
-//   w = $('#canvas_container').width();
-//   dim_canvas2 = [w,canvas2_h];
-//   c2.width = dim_canvas2[0];
-//   c2.height = dim_canvas2[1];
-
-
-
-//   harmonica_img.src = "/static/gfx/harmonica.png";
-//   harmonica_img.onload = function() {
-//     ctx2.drawImage(this, 0,0,dim_canvas2[0],this.height);
-//       offset_c2 = [dim_canvas2[0]/12,this.height];
-//     };
-
-
-	//console.log('scroll '+scroll);
-
-
-
-
-
-
-
-
-}
-
-
-
 
 
 function redraw_everything(){
