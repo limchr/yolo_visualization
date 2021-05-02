@@ -36,35 +36,44 @@
 	<img class="fig_select_img" src="figs/4/base_img.jpg" onclick="base_img = '4'; reload_visu();"></img>
 </div>
 
-<h2> Detected Bounding Boxes on large grid (13x13)</h2>
-<div id="bbslxywhcp" class="visu"></div>
-
-<h2> Detected Bounding Boxes on small grid (52x52)</h2>
-<div id="bbssxywhcp" class="visu"></div>
 
 
+<h2>Different Grid Sizes</h2>
 
-<h2> Static normalized gradient on large grid (13x13) with XYWHCP neurons active </h2>
-<div id="lxywhcp" class="visu"></div>
-<h2> Static normalized gradient on large grid (13x13) with XY neurons active </h2>
-<div id="lxy" class="visu"></div>
-<h2> Static normalized gradient on large grid (13x13) with WH neurons active </h2>
-<div id="lwh" class="visu"></div>
-<h2> Static normalized gradient on large grid (13x13) with C neuron active </h2>
-<div id="lc" class="visu"></div>
-<h2> Static normalized gradient on large grid (13x13) with P neurons active </h2>
-<div id="lp" class="visu"></div>
+<div class="m-page">
+	<div class="bbs_visu">
+		<div></div>														<img class="arrow" src="gfx/l.png"/>		<canvas class="canv"  id="bbs_--l_x-----"></canvas>
+		<canvas class="control_canv" id="control_canv"></canvas>		<img class="arrow" src="gfx/m.png"/>		<canvas class="canv"  id="bbs_-m-_x-----"></canvas>
+		<div></div>														<img class="arrow" src="gfx/s.png"/>		<canvas class="canv"  id="bbs_s--_x-----"></canvas>
+	</div>
+</div>
 
-<h2> Static normalized gradient on small grid (52x52) with XYWHCP neurons active </h2>
-<div id="sxywhcp" class="visu"></div>
-<h2> Static normalized gradient on large grid (52x52) with XY neurons active </h2>
-<div id="sxy" class="visu"></div>
-<h2> Static normalized gradient on large grid (52x52) with WH neurons active </h2>
-<div id="swh" class="visu"></div>
-<h2> Static normalized gradient on large grid (52x52) with C neuron active </h2>
-<div id="sc" class="visu"></div>
-<h2> Static normalized gradient on large grid (52x52) with P neurons active </h2>
-<div id="sp" class="visu"></div>
+<h2>Visualization of Gradients on large Grid</h2>
+
+<div class="l-page">
+	<div class="grad_visu">
+		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad_--l_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad_--l_-y----"></canvas>
+		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad_--l_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad_--l_---h--"></canvas>
+	</div>
+</div>
+
+<h2>Visualization of Gradients on medium Grid</h2>
+
+<div class="l-page">
+	<div class="grad_visu">
+		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad_-m-_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad_-m-_-y----"></canvas>
+		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad_-m-_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad_-m-_---h--"></canvas>
+	</div>
+</div>
+
+<h2>Visualization of Gradients on small Grid</h2>
+
+<div class="l-page">
+	<div class="grad_visu">
+		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad_s--_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad_s--_-y----"></canvas>
+		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad_s--_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad_s--_---h--"></canvas>
+	</div>
+</div>
 
 
 </dt-article>

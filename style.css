@@ -10,8 +10,13 @@
     display: grid;
     align-items: center;
     grid-template-columns: 50% 50%;
-    background-color: darkred;
 }
+
+.control_canv {
+	background-color: lightgray;
+	border: 1px solid grey;
+}
+
 
 .canv {
 	width:100%;
@@ -24,8 +29,46 @@
 	display: grid;
     align-items: center;
     grid-template-columns: 20% 20% 20% 20% 20%;
-    background-color: grey;
 }
 .fig_select_img {
 	width: 100%;
 }
+
+.grid_view2 {
+	display: grid;
+    align-items: center;
+    grid-template-columns: 50% 50%;
+
+}
+.grid_view3 {
+	display: grid;
+    align-items: center;
+    grid-template-columns: 33% 33% 33% ;
+
+}
+
+.grid_view4 {
+	display: grid;
+    align-items: center;
+    grid-template-columns: 25% 25% 25% 25%;
+
+}
+
+
+.bbs_visu {
+	display: grid;
+    align-items: center;
+    grid-template-columns: 50% 10% 40%;
+}
+
+.arrow{
+	width: 100%;
+}
+
+.grad_visu {
+	display: grid;
+    align-items: center;
+    grid-template-columns: 30% 5% 30% 5% 30%;
+}
+
+
