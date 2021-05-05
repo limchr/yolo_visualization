@@ -38,19 +38,35 @@
 <p>Classes for p are (for image 1 to 5): sandwich, laptop, person, cat, pizza</p>
 
 
+Loss: 
+
 <dt-code block language="python">
 
-					fixed_normalization_factor = 1000000000
-					fixed_normalization = np.abs(grad * fixed_normalization_factor)
-					fixed_normalization[fixed_normalization > 1.0] = 1.0
 
-					grad_1d = grad.mean(axis=2) * fixed_normalization_factor
-					grad_1d_p = grad_1d >= 0
-					grad_1d_n = grad_1d < 0
-					grad_pn = np.zeros(grad.shape, dtype=np.float)
+mask1_tensor = tf.convert_to_tensor(mask1, dtype=tf.float32)
+mask1_output = mask1_tensor * preds[pred_i]
+loss1 = tf.reduce_sum(mask1_output/tf.math.reduce_sum(mask1_output))
+losses.append(loss1)
 
-					grad_pn[grad_1d_p, 0] = np.abs(grad_1d)[grad_1d_p]
-					grad_pn[grad_1d_n, 2] = np.abs(grad_1d)[grad_1d_n]
+</dt-code>
+
+
+Normalization and signed Gradients: 
+
+
+<dt-code block language="python">
+
+fixed_normalization_factor = 1000000000
+fixed_normalization = np.abs(grad * fixed_normalization_factor)
+fixed_normalization[fixed_normalization > 1.0] = 1.0
+
+grad_1d = grad.mean(axis=2) * fixed_normalization_factor
+grad_1d_p = grad_1d >= 0
+grad_1d_n = grad_1d < 0
+grad_pn = np.zeros(grad.shape, dtype=np.float)
+
+grad_pn[grad_1d_p, 0] = np.abs(grad_1d)[grad_1d_p]
+grad_pn[grad_1d_n, 2] = np.abs(grad_1d)[grad_1d_n]
 
 
 </dt-code>
