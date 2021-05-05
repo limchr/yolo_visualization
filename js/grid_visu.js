@@ -33,6 +33,27 @@
   ['static-grad', 's--_----c-', 13, 13, 4, 4],
   ['static-grad', 's--_-----p', 13, 13, 4, 4],
 
+  ['static-grad-pn', '--l_x-----', 13, 13, 1, 1],
+  ['static-grad-pn', '--l_-y----', 13, 13, 1, 1],
+  ['static-grad-pn', '--l_--w---', 13, 13, 1, 1],
+  ['static-grad-pn', '--l_---h--', 13, 13, 1, 1],
+  ['static-grad-pn', '--l_----c-', 13, 13, 1, 1],
+  ['static-grad-pn', '--l_-----p', 13, 13, 1, 1],
+  
+  ['static-grad-pn', '-m-_x-----', 13, 13, 2, 2],
+  ['static-grad-pn', '-m-_-y----', 13, 13, 2, 2],
+  ['static-grad-pn', '-m-_--w---', 13, 13, 2, 2],
+  ['static-grad-pn', '-m-_---h--', 13, 13, 2, 2],
+  ['static-grad-pn', '-m-_----c-', 13, 13, 2, 2],
+  ['static-grad-pn', '-m-_-----p', 13, 13, 2, 2],
+
+  ['static-grad-pn', 's--_x-----', 13, 13, 4, 4],
+  ['static-grad-pn', 's--_-y----', 13, 13, 4, 4],
+  ['static-grad-pn', 's--_--w---', 13, 13, 4, 4],
+  ['static-grad-pn', 's--_---h--', 13, 13, 4, 4],
+  ['static-grad-pn', 's--_----c-', 13, 13, 4, 4],
+  ['static-grad-pn', 's--_-----p', 13, 13, 4, 4],
+
   ];
 
 
