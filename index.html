@@ -9,10 +9,12 @@
   title: "YOLOv4 Receptive Field Visualization"
   description: "Just some interactive animations for visualizing YOLOv4 state of the art object detection approach."
   authors:
-  - Author 1: http://author1.website
-  - Author 2: http://author2.website
-  - Author 3: http://author3.website
+  - Christian Limberg: http://uni-bielefeld.de
+  - Andrew Melnik: http://uni-bielefeld.de
+  - Augustin Harter: http://uni-bielefeld.de
+  - Helge Ritter: http://uni-bielefeld.de
   affiliations:
+  - Bielefeld University: http://uni-bielefeld.de
   - Bielefeld University: http://uni-bielefeld.de
   - Bielefeld University: http://uni-bielefeld.de
   - Bielefeld University: http://uni-bielefeld.de
@@ -24,138 +26,36 @@
   <h2>An enlightening look behind the scenes of YOLOv4<dt-cite key="bochkovskiy2020yolov4"></dt-cite> state-of-the-art object detection approach and what the <i>once</i> actually means</h2>
   <dt-byline></dt-byline>
 
-<h2> Select an Image for Visualization</h2>
+<h2> Figure 1</h2>
+
+<h3>Select grid size and image to visualize:</h3> 
+<div id="size_select">
+	<img class="fig_select_img" src="gfx/l.png" onclick="combined.size_bb = '13'; combined.init();"></img>
+	<img class="fig_select_img" src="gfx/m.png" onclick="combined.size_bb = '26'; combined.init();"></img>
+	<img class="fig_select_img" src="gfx/s.png" onclick="combined.size_bb = '52'; combined.init();"></img>
+</div>
 <div id="fig_select">
-	<img class="fig_select_img" src="figs/0/base_img.jpg" onclick="base_img = '0'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/1/base_img.jpg" onclick="base_img = '1'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/2/base_img.jpg" onclick="base_img = '2'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/3/base_img.jpg" onclick="base_img = '3'; reload_visu();"></img>
-	<img class="fig_select_img" src="figs/4/base_img.jpg" onclick="base_img = '4'; reload_visu();"></img>
+	<img class="fig_select_img" src="figs/out_bb/0/base.jpg" onclick="combined.base_img = '0'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/1/base.jpg" onclick="combined.base_img = '1'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/2/base.jpg" onclick="combined.base_img = '2'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/3/base.jpg" onclick="combined.base_img = '3'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/4/base.jpg" onclick="combined.base_img = '4'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/5/base.jpg" onclick="combined.base_img = '5'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/6/base.jpg" onclick="combined.base_img = '6'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/7/base.jpg" onclick="combined.base_img = '7'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/8/base.jpg" onclick="combined.base_img = '8'; combined.init();"></img>
+	<img class="fig_select_img" src="figs/out_bb/9/base.jpg" onclick="combined.base_img = '9'; combined.init();"></img>
 </div>
 
-<p>Changes from last version: different loss, colored (signed) gradients, p active for specific class</p>
 
-<p>Classes for p are (for image 1 to 5): sandwich, laptop, person, cat, pizza</p>
-
-
-Loss: 
-
-<dt-code block language="python">
-
-
-mask1_tensor = tf.convert_to_tensor(mask1, dtype=tf.float32)
-mask1_output = mask1_tensor * preds[pred_i]
-loss1 = tf.reduce_sum(mask1_output/tf.math.reduce_sum(mask1_output))
-losses.append(loss1)
-
-</dt-code>
-
-
-Normalization and signed Gradients: 
-
-
-<dt-code block language="python">
-
-fixed_normalization_factor = 1000000000
-fixed_normalization = np.abs(grad * fixed_normalization_factor)
-fixed_normalization[fixed_normalization > 1.0] = 1.0
-
-grad_1d = grad.mean(axis=2) * fixed_normalization_factor
-grad_1d_p = grad_1d >= 0
-grad_1d_n = grad_1d < 0
-grad_pn = np.zeros(grad.shape, dtype=np.float)
-
-grad_pn[grad_1d_p, 0] = np.abs(grad_1d)[grad_1d_p]
-grad_pn[grad_1d_n, 2] = np.abs(grad_1d)[grad_1d_n]
-
-
-</dt-code>
-
-
-
-
-<h2>Different Grid Sizes</h2>
 
 <div class="m-page">
-	<div class="bbs_visu">
-		<div></div>														<img class="arrow" src="gfx/l.png"/>		<canvas class="canv"  id="bbs_--l_x-----"></canvas>
-		<canvas class="control_canv" id="control_canv"></canvas>		<img class="arrow" src="gfx/m.png"/>		<canvas class="canv"  id="bbs_-m-_x-----"></canvas>
-		<div></div>														<img class="arrow" src="gfx/s.png"/>		<canvas class="canv"  id="bbs_s--_x-----"></canvas>
-	</div>
+
+
+<canvas id="bbs" style="width:100%;"></canvas>
+
+
 </div>
-
-<h2>Visualization of Static Gradients on large Grid</h2>
-
-<div class="l-page">
-	<div class="grad_visu">
-		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad_--l_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad_--l_-y----"></canvas>
-		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad_--l_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad_--l_---h--"></canvas>
-		<div></div>														<div>C</div>		<canvas class="canv"  id="static-grad_--l_----c-"></canvas>		<div>P</div>		<canvas class="canv"  id="static-grad_--l_-----p"></canvas>
-
-	</div>
-</div>
-
-<h2>Visualization of Static Gradients on medium Grid</h2>
-
-<div class="l-page">
-	<div class="grad_visu">
-		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad_-m-_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad_-m-_-y----"></canvas>
-		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad_-m-_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad_-m-_---h--"></canvas>
-		<div></div>														<div>C</div>		<canvas class="canv"  id="static-grad_-m-_----c-"></canvas>		<div>P</div>		<canvas class="canv"  id="static-grad_-m-_-----p"></canvas>
-
-	</div>
-</div>
-
-<h2>Visualization of Static Gradients on small Grid</h2>
-
-<div class="l-page">
-	<div class="grad_visu">
-		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad_s--_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad_s--_-y----"></canvas>
-		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad_s--_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad_s--_---h--"></canvas>
-		<div></div>														<div>C</div>		<canvas class="canv"  id="static-grad_s--_----c-"></canvas>		<div>P</div>		<canvas class="canv"  id="static-grad_s--_-----p"></canvas>
-
-
-	</div>
-</div>
-
-
-
-<h2>Visualization of Signed Gradients on large Grid</h2>
-
-<div class="l-page">
-	<div class="grad_visu">
-		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad-pn_--l_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad-pn_--l_-y----"></canvas>
-		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad-pn_--l_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad-pn_--l_---h--"></canvas>
-		<div></div>														<div>C</div>		<canvas class="canv"  id="static-grad-pn_--l_----c-"></canvas>		<div>P</div>		<canvas class="canv"  id="static-grad-pn_--l_-----p"></canvas>
-
-	</div>
-</div>
-
-<h2>Visualization of Signed Gradients on medium Grid</h2>
-
-<div class="l-page">
-	<div class="grad_visu">
-		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad-pn_-m-_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad-pn_-m-_-y----"></canvas>
-		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad-pn_-m-_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad-pn_-m-_---h--"></canvas>
-		<div></div>														<div>C</div>		<canvas class="canv"  id="static-grad-pn_-m-_----c-"></canvas>		<div>P</div>		<canvas class="canv"  id="static-grad-pn_-m-_-----p"></canvas>
-
-	</div>
-</div>
-
-<h2>Visualization of Signed Gradients on small Grid</h2>
-
-<div class="l-page">
-	<div class="grad_visu">
-		<canvas class="control_canv" id="control_canv"></canvas>		<div>X</div>		<canvas class="canv"  id="static-grad-pn_s--_x-----"></canvas>		<div>Y</div>		<canvas class="canv"  id="static-grad-pn_s--_-y----"></canvas>
-		<div></div>														<div>W</div>		<canvas class="canv"  id="static-grad-pn_s--_--w---"></canvas>		<div>H</div>		<canvas class="canv"  id="static-grad-pn_s--_---h--"></canvas>
-		<div></div>														<div>C</div>		<canvas class="canv"  id="static-grad-pn_s--_----c-"></canvas>		<div>P</div>		<canvas class="canv"  id="static-grad-pn_s--_-----p"></canvas>
-
-
-	</div>
-</div>
-
-
-
 
 
 

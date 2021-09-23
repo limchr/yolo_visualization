@@ -1,37 +1,179 @@
   var base_img = '0'
+  var size_bb = '13'
   var img_dir = 'figs';
   var gfx_dir = 'gfx';
+  var combined = null;
 
-  var base_img_dir = 'static-grad';
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  combined = new combined_visu('#bbs',base_img,size_bb);
+});
 
 
-  var control_canv_id = 'control_canv';
+
+
+
+class combined_visu {
+	constructor(canv_id, base_img, size_bb) {
+		this.canvas = $(canv_id);
+		this.canv_id = canv_id;
+		this.base_img = base_img;
+		this.size_bb = size_bb;
+		
+		quadratic_canv(canv_id);
+		change_canv_img(this.canv_id, 'gfx/instruction.jpg')
+
+		 
+		 this.canvas[0].addEventListener('mousemove', e => {
+			var mouse = get_mouse_xy(this.canvas[0],e);
+			var grid_pos = [(mouse[0]/this.canvas.width()),(mouse[1]/this.canvas.height())];
+			this.update_image(grid_pos);
+		}, true);
+
+
+	  this.canvas[0].addEventListener('mouseout', e => {
+	  	change_canv_img(this.canv_id, 'gfx/instruction.jpg')
+	  }, true);
+
+		 
+		}
+
+	update_image(grid_pos) {
+        var gx = Math.floor(grid_pos[0]*parseInt(this.size_bb));
+        var gy = Math.floor(grid_pos[1]*parseInt(this.size_bb));
+        var file_name = 'figs/out_bb/'+this.base_img+'/'+this.size_bb+'/img_'+pad(gx,5)+'_'+pad(gy,5)+'.jpg';
+        change_canv_img(this.canv_id,file_name);
+
+	}
+
+    init() {
+        
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class img_publisher {
+	constructor(canv_id) {
+		this.subscriber = [];
+		this.canvas = $(canv_id);
+		
+		 //quadratic_canv(canv_id);
+		 //change_canv_img(canv_id, img_path);
+		 
+		 
+		 this.canvas.addEventListener('mousemove', function(e) {
+			var mouse = get_mouse_xy(this,e);
+			var grid_pos = [(mouse[0]/this.width),(mouse[1]/this.height)];
+			this.update_subscriber(grid_pos);
+		}, true);
+
+
+	  this.canvas.addEventListener('mouseout', function(e) {
+	  }, true);
+
+		 
+		}
+
+	register_subscriber(subscriber) {
+		this.subscriber.push(subscriber);
+	}
+
+	update_subscriber(grid_pos) {
+		for(var i=0;i<this.subscriber.length;++i) {
+			this.subscriber[i].update(grid_pos);
+		}
+	}
+}
+
+
+
+
+
+class img_subscriber {
+	constructor(canv_id, img_path, num_img, increment, publisher){
+		publisher.register_subscriber(this);
+	}
+	
+	update(grid_pos) {
+	}
+}
+
+
+function quadratic_canv(canv) {
+	canv = $(canv);
+    s = canv.width();
+	canv.css('width',s);
+	canv.css('height',s);
+    canv[0].width = s;
+    canv[0].height = s;
+}
+function change_canv_img(canv, img) {
+	canv = $(canv);
+
+	var context = canv[0].getContext('2d');
+
+	base_img_file = new Image;
+	base_img_file.src = img;
+	base_img_file.onload = function() {
+		context.drawImage(this, 0,0, 416, 416,0,0,canv[0].width,canv[0].height);
+	};
+
+}
+
+
+
+
+
+
+
+
+
+
 
   var visus = [
   ['bbs', '--l_x-----', 13, 13, 1, 1],
   ['bbs', '-m-_x-----', 13, 13, 2, 2],
   ['bbs', 's--_x-----', 13, 13, 4, 4],
 
-  ['static-grad', '--l_x-----', 13, 13, 1, 1],
-  ['static-grad', '--l_-y----', 13, 13, 1, 1],
-  ['static-grad', '--l_--w---', 13, 13, 1, 1],
-  ['static-grad', '--l_---h--', 13, 13, 1, 1],
-  ['static-grad', '--l_----c-', 13, 13, 1, 1],
-  ['static-grad', '--l_-----p', 13, 13, 1, 1],
+  ['grad-cam', '--l_x-----', 13, 13, 1, 1],
+  ['grad-cam', '--l_-y----', 13, 13, 1, 1],
+  ['grad-cam', '--l_--w---', 13, 13, 1, 1],
+  ['grad-cam', '--l_---h--', 13, 13, 1, 1],
+  ['grad-cam', '--l_----c-', 13, 13, 1, 1],
+  ['grad-cam', '--l_-----p', 13, 13, 1, 1],
   
-  ['static-grad', '-m-_x-----', 13, 13, 2, 2],
-  ['static-grad', '-m-_-y----', 13, 13, 2, 2],
-  ['static-grad', '-m-_--w---', 13, 13, 2, 2],
-  ['static-grad', '-m-_---h--', 13, 13, 2, 2],
-  ['static-grad', '-m-_----c-', 13, 13, 2, 2],
-  ['static-grad', '-m-_-----p', 13, 13, 2, 2],
+  ['grad-cam', '-m-_x-----', 13, 13, 2, 2],
+  ['grad-cam', '-m-_-y----', 13, 13, 2, 2],
+  ['grad-cam', '-m-_--w---', 13, 13, 2, 2],
+  ['grad-cam', '-m-_---h--', 13, 13, 2, 2],
+  ['grad-cam', '-m-_----c-', 13, 13, 2, 2],
+  ['grad-cam', '-m-_-----p', 13, 13, 2, 2],
 
-  ['static-grad', 's--_x-----', 13, 13, 4, 4],
-  ['static-grad', 's--_-y----', 13, 13, 4, 4],
-  ['static-grad', 's--_--w---', 13, 13, 4, 4],
-  ['static-grad', 's--_---h--', 13, 13, 4, 4],
-  ['static-grad', 's--_----c-', 13, 13, 4, 4],
-  ['static-grad', 's--_-----p', 13, 13, 4, 4],
+  ['grad-cam', 's--_x-----', 13, 13, 4, 4],
+  ['grad-cam', 's--_-y----', 13, 13, 4, 4],
+  ['grad-cam', 's--_--w---', 13, 13, 4, 4],
+  ['grad-cam', 's--_---h--', 13, 13, 4, 4],
+  ['grad-cam', 's--_----c-', 13, 13, 4, 4],
+  ['grad-cam', 's--_-----p', 13, 13, 4, 4],
 
   ['static-grad-pn', '--l_x-----', 13, 13, 1, 1],
   ['static-grad-pn', '--l_-y----', 13, 13, 1, 1],
@@ -57,12 +199,10 @@
   ];
 
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  register_visu();
-});
+
+
 
 function reload_visu() {
-  register_visu();
 }
 
 function register_visu() {
@@ -113,29 +253,6 @@ function unregister_visu() {
   $('.visu').html('');
 }
 
-
-function quadratic_canv(canv) {
-	canv = $(canv);
-    s = canv.width();
-	canv.css('width',s);
-	canv.css('height',s);
-    canv[0].width = s;
-    canv[0].height = s;
-}
-function change_canv_img(canv, img) {
-		canv = $(canv);
-
-	var context = canv[0].getContext('2d');
-
-	
-	
-	base_img_file = new Image;
-	base_img_file.src = img;
-	base_img_file.onload = function() {
-		context.drawImage(this, 0,0, 416, 416,0,0,canv[0].width,canv[0].height);
-	};
-
-}
 
 
 
