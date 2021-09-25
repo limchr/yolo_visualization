@@ -6,16 +6,18 @@
     padding: 0px;
 }
 
-.visu {
+.canvas_grid {
     display: grid;
     align-items: center;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 0.5fr 1fr 1fr;
 }
 
-.control_canv {
-	background-color: lightgray;
-	border: 1px solid grey;
+#select_canvas {
 }
+
+.canvas_grid canvas {
+	margin-left: 2px;
+} 
 
 
 .canv {
@@ -25,20 +27,34 @@
 	border: 1px solid grey;
 }
 
-#fig_select {
+.fig_select {
 	display: grid;
     align-items: center;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-bottom: 2px;
+
 }
 
-#size_select {
+.size_select {
 	display: grid;
     align-items: center;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 2px;
 }
 
 
 .fig_select_img {
+	width: 100%;
+}
+
+.size_select_img {
+	width: 100%;
+}
+.fig_select_img_2 {
+	width: 100%;
+}
+
+.size_select_img_2 {
 	width: 100%;
 }
 

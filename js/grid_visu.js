@@ -1,12 +1,23 @@
-  var base_img = '0'
-  var size_bb = '13'
-  var img_dir = 'figs';
-  var gfx_dir = 'gfx';
-  var combined = null;
-
+var combined = null;
+var combined_shift = null;
+var publisher = null;
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  combined = new combined_visu('#bbs',base_img,size_bb);
+  combined = new combined_visu('#bbs','out_bb','6','13',null,'');
+  combined_shift = new combined_visu('#shift','out_shift','6','13',10,'_2');
+
+  publisher = new img_publisher('#select_canvas');
+
+  sub1 = new img_subscriber('#canvas_1h','figs/gradcam_out/13/75/h/');
+  sub2 = new img_subscriber('#canvas_1w','figs/gradcam_out/13/75/w/');
+  sub3 = new img_subscriber('#canvas_2h','figs/gradcam_out/13/105/h/');
+  sub4 = new img_subscriber('#canvas_2w','figs/gradcam_out/13/105/w/');
+
+  publisher.register_subscriber(sub1);
+  publisher.register_subscriber(sub2);
+  publisher.register_subscriber(sub3);
+  publisher.register_subscriber(sub4);
+
 });
 
 
@@ -14,12 +25,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 class combined_visu {
-	constructor(canv_id, base_img, size_bb) {
+	constructor(canv_id, root_dir,base_img, size_bb,num_imgs,name_suffix) {
 		this.canvas = $(canv_id);
 		this.canv_id = canv_id;
 		this.base_img = base_img;
 		this.size_bb = size_bb;
-		
+		this.root_dir = root_dir;
+		this.num_imgs = num_imgs;
+		this.name_suffix = name_suffix;
 		quadratic_canv(canv_id);
 		change_canv_img(this.canv_id, 'gfx/instruction.jpg')
 
@@ -35,19 +48,51 @@ class combined_visu {
 	  	change_canv_img(this.canv_id, 'gfx/instruction.jpg')
 	  }, true);
 
+        this.change_image(base_img);
+        this.change_size(size_bb);
 		 
 		}
 
 	update_image(grid_pos) {
-        var gx = Math.floor(grid_pos[0]*parseInt(this.size_bb));
-        var gy = Math.floor(grid_pos[1]*parseInt(this.size_bb));
-        var file_name = 'figs/out_bb/'+this.base_img+'/'+this.size_bb+'/img_'+pad(gx,5)+'_'+pad(gy,5)+'.jpg';
+		var num = this.num_imgs ? this.num_imgs : parseInt(this.size_bb);
+        var gx = Math.floor(grid_pos[0]*num);
+        var gy = Math.floor(grid_pos[1]*num);
+        var file_name = 'figs/'+this.root_dir+'/'+this.base_img+'/'+this.size_bb+'/img_'+pad(gx,5)+'_'+pad(gy,5)+'.jpg';
         change_canv_img(this.canv_id,file_name);
 
 	}
 
     init() {
         
+    }
+
+    set_num_imgs(num_imgs) {
+    	this.num_imgs = num_imgs;
+    }
+
+    set_name_suffix(suffix) {
+    	this.name_suffix = suffix;
+    }
+
+    change_size(new_size){
+    	this.size_bb = new_size;
+    	this.init();
+		
+        var all = document.getElementsByClassName('size_select_img'+this.name_suffix);
+		for (var i = 0; i < all.length; i++) {
+		  all[i].style.border = '';
+		}
+        document.getElementById('ss_'+new_size+this.name_suffix).style.cssText = 'border-bottom: 5px solid black';
+    }
+    change_image(new_img){
+    	this.base_img = new_img;
+    	this.init();
+		
+        var all = document.getElementsByClassName('fig_select_img'+this.name_suffix);
+		for (var i = 0; i < all.length; i++) {
+		  all[i].style.border = '';
+		}
+        document.getElementById('fs_'+new_img+this.name_suffix).style.cssText = 'border-bottom: 5px solid black';
     }
 
 
@@ -75,19 +120,21 @@ class img_publisher {
 	constructor(canv_id) {
 		this.subscriber = [];
 		this.canvas = $(canv_id);
+		this.canv_id = canv_id;
 		
-		 //quadratic_canv(canv_id);
-		 //change_canv_img(canv_id, img_path);
+		 quadratic_canv(canv_id);
+		 change_canv_img(this.canv_id, 'gfx/instruction.jpg')
+
 		 
-		 
-		 this.canvas.addEventListener('mousemove', function(e) {
-			var mouse = get_mouse_xy(this,e);
-			var grid_pos = [(mouse[0]/this.width),(mouse[1]/this.height)];
+		 this.canvas[0].addEventListener('mousemove', e => {
+			var mouse = get_mouse_xy(this.canvas[0],e);
+			var grid_pos = [(mouse[0]/this.canvas.width()),(mouse[1]/this.canvas.height())];
 			this.update_subscriber(grid_pos);
 		}, true);
 
 
-	  this.canvas.addEventListener('mouseout', function(e) {
+	  this.canvas[0].addEventListener('mouseout', e => {
+	  	change_canv_img(this.canv_id, 'gfx/instruction.jpg')
 	  }, true);
 
 		 
@@ -109,11 +156,23 @@ class img_publisher {
 
 
 class img_subscriber {
-	constructor(canv_id, img_path, num_img, increment, publisher){
-		publisher.register_subscriber(this);
+	constructor(canv_id, img_path){
+		this.canv_id = canv_id;
+		this.img_path = img_path;
+
+		quadratic_canv(canv_id);
+
+
 	}
 	
 	update(grid_pos) {
+		var start_i = 2;
+		var num = 9;
+        var gx = Math.floor(grid_pos[0]*num+start_i);
+        var gy = Math.floor(grid_pos[1]*num+start_i);
+        var file_name = this.img_path+'/img_'+pad(gx,5)+'_'+pad(gy,5)+'.jpg';
+        change_canv_img(this.canv_id,file_name);
+
 	}
 }
 

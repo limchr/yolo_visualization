@@ -28,23 +28,19 @@
 
 <h2> Figure 1</h2>
 
-<h3>Select grid size and image to visualize:</h3> 
-<div id="size_select">
-	<img class="fig_select_img" src="gfx/l.png" onclick="combined.size_bb = '13'; combined.init();"></img>
-	<img class="fig_select_img" src="gfx/m.png" onclick="combined.size_bb = '26'; combined.init();"></img>
-	<img class="fig_select_img" src="gfx/s.png" onclick="combined.size_bb = '52'; combined.init();"></img>
+<h3>Select grid size and image to be visualized. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. However, most grid cells have a low confidence value, i.e. there is no underlying object. By hovering over the figure, the respective grid cell is visualized and the detected bounding box of the most certain anchor box. The bounding boxes are labeled with the predicted class, the certainty value and an index describing which anchor box was used. Bounding boxes with a high certainty are colored green.</h3> 
+<div class="size_select">
+	<img class="size_select_img" src="gfx/l.png" id="ss_13" onclick="combined.change_size('13')"></img>
+	<img class="size_select_img" src="gfx/m.png" id="ss_26" onclick="combined.change_size('26')"></img>
+	<img class="size_select_img" src="gfx/s.png" id="ss_52" onclick="combined.change_size('52')"></img>
 </div>
-<div id="fig_select">
-	<img class="fig_select_img" src="figs/out_bb/0/base.jpg" onclick="combined.base_img = '0'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/1/base.jpg" onclick="combined.base_img = '1'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/2/base.jpg" onclick="combined.base_img = '2'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/3/base.jpg" onclick="combined.base_img = '3'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/4/base.jpg" onclick="combined.base_img = '4'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/5/base.jpg" onclick="combined.base_img = '5'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/6/base.jpg" onclick="combined.base_img = '6'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/7/base.jpg" onclick="combined.base_img = '7'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/8/base.jpg" onclick="combined.base_img = '8'; combined.init();"></img>
-	<img class="fig_select_img" src="figs/out_bb/9/base.jpg" onclick="combined.base_img = '9'; combined.init();"></img>
+<div class="fig_select">
+	<img class="fig_select_img" src="figs/out_bb/1/base.jpg" id="fs_1" onclick="combined.change_image('1')"></img>
+	<img class="fig_select_img" src="figs/out_bb/2/base.jpg" id="fs_2" onclick="combined.change_image('2')"></img>
+	<img class="fig_select_img" src="figs/out_bb/5/base.jpg" id="fs_5" onclick="combined.change_image('5')"></img>
+	<img class="fig_select_img" src="figs/out_bb/6/base.jpg" id="fs_6" onclick="combined.change_image('6')"></img>
+	<img class="fig_select_img" src="figs/out_bb/8/base.jpg" id="fs_8" onclick="combined.change_image('8')"></img>
+	<img class="fig_select_img" src="figs/out_bb/9/base.jpg" id="fs_9" onclick="combined.change_image('9')"></img>
 </div>
 
 
@@ -53,6 +49,84 @@
 
 
 <canvas id="bbs" style="width:100%;"></canvas>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<h2> Figure 2</h2>
+
+<h3>Averaged receptive field visualization of convolutional layer 75 (3. last layer of the backbone network) and convolutional layer 105 (5. last layer of the YOLO head) by our Detection Grad Cam algorithm. Our adapted Grad Cam can visualize the receptive field of single neurons. We calculate this visualization by averaging 15 images per grid cell. We choose images where a person is below the corresponding large 13x13 grid cell (and the grid cell whould get the training signal). It shows, that the receptive area is below the corresponding grid-cell's position. And as it is the case for classification CNNS, the receptive fields of layer 105 is smaller compared to the earlier layer 75. The figure depicts further, that the width-neuron has a rather wider receptive field, while the height neuron has a rather vertical receptive field i.e. the detection is more sensitive to these areas. </h3>
+
+
+
+<div class="m-page">
+
+<div class="canvas_grid">
+<div></div> <div></div><div style="text-align:center">Height</div> <div style="text-align:center">Width</div>
+
+<div><canvas id="select_canvas" style="width:100%;"></canvas></div>
+<div style='text-align: right;'>Layer 75</div>
+<div><canvas id="canvas_1h" style="width:100%;"></canvas></div>
+<div><canvas id="canvas_1w" style="width:100%;"></canvas></div>
+
+<div></div>
+<div style='text-align: right;'>Layer 105</div>
+<div><canvas id="canvas_2h" style="width:100%;"></canvas></div>
+<div><canvas id="canvas_2w" style="width:100%;"></canvas></div>
+
+
+
+</div>
+	
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2> Figure 3</h2>
+
+<h3>Select grid size and image to be visualized. By shifting the actual image below the grid cells, it can be visualized how the confidences of the grid cells (green means high confidence) are shifted and neighboring cells get activated for detecting a shifted object.</h3> 
+<div class="size_select">
+	<img class="size_select_img_2" src="gfx/l.png" id="ss_13_2" onclick="combined_shift.change_size('13')"></img>
+	<img class="size_select_img_2" src="gfx/m.png" id="ss_26_2" onclick="combined_shift.change_size('26')"></img>
+	<img class="size_select_img_2" src="gfx/s.png" id="ss_52_2" onclick="combined_shift.change_size('52')"></img>
+</div>
+<div class="fig_select">
+	<img class="fig_select_img_2" src="figs/out_bb/1/base.jpg" id="fs_1_2" onclick="combined_shift.change_image('1')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/2/base.jpg" id="fs_2_2" onclick="combined_shift.change_image('2')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/5/base.jpg" id="fs_5_2" onclick="combined_shift.change_image('5')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/6/base.jpg" id="fs_6_2" onclick="combined_shift.change_image('6')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/8/base.jpg" id="fs_8_2" onclick="combined_shift.change_image('8')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/9/base.jpg" id="fs_9_2" onclick="combined_shift.change_image('9')"></img>
+</div>
+
+
+
+<div class="m-page">
+
+
+<canvas id="shift" style="width:100%;"></canvas>
 
 
 </div>
