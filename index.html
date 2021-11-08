@@ -39,7 +39,7 @@
 
 <div class="l-page">
 <h2> Figure 1</h2>
-A simplified schematic of the Yolo network architecture.
+A simplified schematic of the YOLO.v4 network architecture.
 </div>
 
 
@@ -72,7 +72,8 @@ A simplified schematic of the Yolo network architecture.
 
 <div class="l-page">
 <h2> Figure 2</h2>
-Select grid size and image to be visualized. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. However, most grid cells have a low confidence value, i.e. there is no underlying object. By hovering over the figure, the respective grid cell is visualized and the detected bounding box of the most certain anchor box. The bounding boxes are labeled with the predicted class, the certainty value and an index describing which anchor box was used. Bounding boxes with a high certainty are colored green.
+With our interactive visualization, the full grid layers of the YOLO.v4 network can be depicted for several images. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d-grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. The bounding boxes are labeled with the predicted class, the certainty value and an index of the anchor box. Object proposals with a high certainty are colored green.
+By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the respective grid cell and the detected bounding box of the most certain anchor box is visualized. 
 </div>
 
 
@@ -118,8 +119,8 @@ Select grid size and image to be visualized. The YOLO architecture has 3 differe
 
 <div class="l-page">
 <h2> Figure 3</h2>
-Select grid size and image to be visualized. By shifting the actual image below the grid cells, it can be visualized how the confidences of the grid cells (green means high confidence) are shifted and neighboring cells get activated for detecting a shifted object.
-</div>
+By shifting the actual input image below the grid cells, it can be visualized how the confidences of the anchor boxes (green means high confidence) are shifted and neighboring cells get activated. 
+By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the input image is shifted.</div>
 
 
 
@@ -157,7 +158,9 @@ Select grid size and image to be visualized. By shifting the actual image below 
 
 <div class="l-page">
 <h2> Figure 4</h2>
-<h3>Averaged receptive field visualization of convolutional layer 75 (3. last layer of the backbone network) and convolutional layer 105 (5. last layer of the YOLO head) by our Detection Grad Cam algorithm. Our adapted Grad Cam can visualize the receptive field of single neurons. We calculate this visualization by averaging 15 images per grid cell. We choose images where a person is below the corresponding large 13x13 grid cell (and the grid cell whould get the training signal). It shows, that the receptive area is below the corresponding grid-cell's position. And as it is the case for classification CNNS, the receptive fields of layer 105 is smaller compared to the earlier layer 75. The figure depicts further, that the width-neuron has a rather wider receptive field, while the height neuron has a rather vertical receptive field i.e. the detection is more sensitive to these areas. </h3>
+Our adapted Detection Grad Cam visualizes the attention of a single output neuron. The left column represents the attention of the Height-neuron and the right column represents the attention of the Width-neuron of a selected grid cell of the large pathway (13x13 output pixels). These plots represent the mean over 15 images where a person is under the corresponding grid cell.
+By hovering over the left area, a spatial grid cell can be selected. The attentions for the 4 neurons (W- and H-neurons for 2 convolutional layers) of the selected grid cell are visualized.
+
 </div>
 
 
