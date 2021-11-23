@@ -8,15 +8,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   publisher = new img_publisher('#select_canvas');
 
-  sub1 = new img_subscriber('#canvas_1h','figs/gradcam_out/13/75/h/');
-  sub2 = new img_subscriber('#canvas_1w','figs/gradcam_out/13/75/w/');
-  sub3 = new img_subscriber('#canvas_2h','figs/gradcam_out/13/105/h/');
-  sub4 = new img_subscriber('#canvas_2w','figs/gradcam_out/13/105/w/');
+  plot_layer = ['75','103','104','105'];
+  plot_neurons = ['x','y','w','h','c','p'];
 
-  publisher.register_subscriber(sub1);
-  publisher.register_subscriber(sub2);
-  publisher.register_subscriber(sub3);
-  publisher.register_subscriber(sub4);
+  subs = [];
+
+  for(var i=0;i<plot_layer.length;++i) {
+	  for(var j=0;j<plot_neurons.length;++j) {
+		  subs.push(new img_subscriber('#canvas_'+plot_layer[i]+'_'+plot_neurons[j],'figs/gradcam_out/13/'+plot_layer[i]+'/'+plot_neurons[j]+'/'));
+	  }
+  }
+	  
+
+
+  for(var i=0;i<subs.length;++i) {
+		publisher.register_subscriber(subs[i]);
+	  }
 
 });
 

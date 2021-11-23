@@ -9,7 +9,7 @@
 .canvas_grid {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 0.5fr 1fr 1fr;
+    grid-template-columns: 1fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 #select_canvas {
