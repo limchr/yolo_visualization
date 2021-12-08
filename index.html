@@ -39,7 +39,7 @@
 
 <div class="l-page">
 <h2> Figure 1</h2>
-A simplified schematic of the YOLO.v4 network architecture.
+A simplified schematic of the YOLO.v4 network architecture. <a href="./figs/yolo_arc.svg">Download figure</a>
 </div>
 
 
@@ -57,12 +57,12 @@ A simplified schematic of the YOLO.v4 network architecture.
 </div>
 
 <div class="m-page fig_select">
+	<img class="fig_select_img" src="figs/out_bb/0/base.jpg" id="fs_0" onclick="combined.change_image('0')"></img>
 	<img class="fig_select_img" src="figs/out_bb/1/base.jpg" id="fs_1" onclick="combined.change_image('1')"></img>
 	<img class="fig_select_img" src="figs/out_bb/2/base.jpg" id="fs_2" onclick="combined.change_image('2')"></img>
+	<img class="fig_select_img" src="figs/out_bb/3/base.jpg" id="fs_3" onclick="combined.change_image('3')"></img>
+	<img class="fig_select_img" src="figs/out_bb/4/base.jpg" id="fs_4" onclick="combined.change_image('4')"></img>
 	<img class="fig_select_img" src="figs/out_bb/5/base.jpg" id="fs_5" onclick="combined.change_image('5')"></img>
-	<img class="fig_select_img" src="figs/out_bb/6/base.jpg" id="fs_6" onclick="combined.change_image('6')"></img>
-	<img class="fig_select_img" src="figs/out_bb/8/base.jpg" id="fs_8" onclick="combined.change_image('8')"></img>
-	<img class="fig_select_img" src="figs/out_bb/9/base.jpg" id="fs_9" onclick="combined.change_image('9')"></img>
 </div>
 
 <div class="m-page">
@@ -105,12 +105,12 @@ By the top button rows, the pathway and the input image to be visualized can be 
 </div>
 
 <div class="m-page fig_select">
+	<img class="fig_select_img_2" src="figs/out_bb/0/base.jpg" id="fs_0_2" onclick="combined_shift.change_image('0')"></img>
 	<img class="fig_select_img_2" src="figs/out_bb/1/base.jpg" id="fs_1_2" onclick="combined_shift.change_image('1')"></img>
 	<img class="fig_select_img_2" src="figs/out_bb/2/base.jpg" id="fs_2_2" onclick="combined_shift.change_image('2')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/3/base.jpg" id="fs_3_2" onclick="combined_shift.change_image('3')"></img>
+	<img class="fig_select_img_2" src="figs/out_bb/4/base.jpg" id="fs_4_2" onclick="combined_shift.change_image('4')"></img>
 	<img class="fig_select_img_2" src="figs/out_bb/5/base.jpg" id="fs_5_2" onclick="combined_shift.change_image('5')"></img>
-	<img class="fig_select_img_2" src="figs/out_bb/6/base.jpg" id="fs_6_2" onclick="combined_shift.change_image('6')"></img>
-	<img class="fig_select_img_2" src="figs/out_bb/8/base.jpg" id="fs_8_2" onclick="combined_shift.change_image('8')"></img>
-	<img class="fig_select_img_2" src="figs/out_bb/9/base.jpg" id="fs_9_2" onclick="combined_shift.change_image('9')"></img>
 </div>
 
 <div class="m-page">
@@ -136,47 +136,54 @@ By the top button rows, the pathway and the input image to be visualized can be 
 
 
 <a id='fig4'></a> 
-<div class="m-page">
+<div class="l-page">
 
 <div class="canvas_grid">
-<div></div> <div></div><div style="text-align:center">X</div> <div style="text-align:center">Y</div> <div style="text-align:center">Width</div> <div style="text-align:center">Height</div> <div style="text-align:center">Confidence</div> <div style="text-align:center">Probability (for class person)</div>  
+	
+<div></div> 
+<div></div> 
+<div style="text-align:center">X</div> 
+<div style="text-align:center">Y</div> 
+<div style="text-align:center">Width</div> 
+<div style="text-align:center">Height</div> 
+<div style="text-align:center">Confidence</div> 
+<div style="text-align:center">Probability (for class person)</div>  
 
-<div><canvas id="select_canvas" style="width:100%;"></canvas></div>
-
+<div><canvas id="select_canvas" class="canv_in_grid"></canvas></div>
 <div style='text-align: right;'>Layer 75</div>
-<div><canvas id="canvas_75_x" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_75_y" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_75_w" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_75_h" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_75_c" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_75_p" style="width:100%;"></canvas></div>
+<div><canvas id="canvas_75_x" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_75_y" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_75_w" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_75_h" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_75_c" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_75_p" class="canv_in_grid"></canvas></div>
 
 <div></div>
 <div style='text-align: right;'>Layer 103</div>
-<div><canvas id="canvas_103_x" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_103_y" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_103_w" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_103_h" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_103_c" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_103_p" style="width:100%;"></canvas></div>
+<div><canvas id="canvas_103_x" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_103_y" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_103_w" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_103_h" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_103_c" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_103_p" class="canv_in_grid"></canvas></div>
 
 <div></div>
 <div style='text-align: right;'>Layer 104</div>
-<div><canvas id="canvas_104_x" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_104_y" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_104_w" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_104_h" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_104_c" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_104_p" style="width:100%;"></canvas></div>
+<div><canvas id="canvas_104_x" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_104_y" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_104_w" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_104_h" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_104_c" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_104_p" class="canv_in_grid"></canvas></div>
 
 <div></div>
 <div style='text-align: right;'>Layer 105</div>
-<div><canvas id="canvas_105_x" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_105_y" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_105_w" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_105_h" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_105_c" style="width:100%;"></canvas></div>
-<div><canvas id="canvas_105_p" style="width:100%;"></canvas></div>
+<div><canvas id="canvas_105_x" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_105_y" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_105_w" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_105_h" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_105_c" class="canv_in_grid"></canvas></div>
+<div><canvas id="canvas_105_p" class="canv_in_grid"></canvas></div>
 
 
 
