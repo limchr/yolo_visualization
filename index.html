@@ -72,7 +72,7 @@ A simplified schematic of the YOLO.v4 network architecture. <a href="./figs/yolo
 
 <div class="l-page">
 <h2> Figure 2</h2>
-With our interactive visualization, the full grid layers of the YOLO.v4 network can be depicted for several images. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d-grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. The bounding boxes are labeled with the predicted class, the certainty value and an index of the anchor box. Object proposals with a high certainty are colored green.
+With our interactive visualization, the full grid layers of the YOLO.v4 network can be depicted for several images. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d-grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. The bounding boxes are labeled with the predicted class, the certainty value and an index of the anchor box. Object proposals with a high certainty are colored blue.
 By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the respective grid cell and the detected bounding box of the most certain anchor box is visualized. 
 </div>
 
@@ -119,7 +119,7 @@ By the top button rows, the pathway and the input image to be visualized can be 
 
 <div class="l-page">
 <h2> Figure 3</h2>
-By shifting the actual input image below the grid cells, it can be visualized how the confidences of the anchor boxes (green means high confidence) are shifted and neighboring cells get activated. 
+By shifting the actual input image below the grid cells, it can be visualized how the confidences of the anchor boxes (blue means high confidence) are shifted and neighboring cells get activated. 
 By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the input image is shifted.</div>
 
 
@@ -194,8 +194,7 @@ By the top button rows, the pathway and the input image to be visualized can be 
 
 <div class="l-page">
 <h2> Figure 4</h2>
-Our adapted Detection Grad Cam visualizes the attention of a single output neuron. The left column represents the attention of the Height-neuron and the right column represents the attention of the Width-neuron of a selected grid cell of the large pathway (13x13 output pixels). These plots represent the mean over 15 images where a person is under the corresponding grid cell.
-By hovering over the left area, a spatial grid cell can be selected. The attentions for the 4 neurons (W- and H-neurons for 2 convolutional layers) of the selected grid cell are visualized.
+Our adapted Detection Grad Cam visualizes the saliency map of a single output neuron. The columns represent the saliency maps of the x-shift, y-shift, width, height, confidence and probability neuron of a selected output pixel of the large pathway (13x13 output pixels). As rows, we depict saliency maps for convolutional layers 75, 103, 104 and 105. Each plot represents the saliency map averaged over 15 images (15x13x13) having class person under the corresponding output pixel's position. By hovering over the left area, a spatial output pixel can be selected. The saliency maps for the different layers and output neurons of the selected output pixel are visualized.
 
 </div>
 
