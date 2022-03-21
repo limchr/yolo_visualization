@@ -100,3 +100,13 @@
 }
 
 
+.cite-div {
+margin: 5px;
+padding: 5px;
+border: 2px dashed black;
+background-color: light-green;
+color: black;
+line-height: 100%;
+}
+
+
