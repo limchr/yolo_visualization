@@ -27,7 +27,76 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		publisher.register_subscriber(subs[i]);
 	  }
 
+
+
+
+	opt_loc = new combined_visu_simple('#optloc','opt_loc/bicycle');
+
+
+var range_canv_id = 'opt_height';
+var range_slider_id = 'height_slide';
+
+
+var range_path = 'opt_height/exp3/person';
+
+var slider = document.getElementById(range_slider_id);
+
+quadratic_canv('#'+range_canv_id);
+
+change_canv_img('#'+range_canv_id,'gfx/instruction2.jpg');
+
+slider.oninput = function(){
+	var img_path = 'figs/'+range_path+'/'+pad(this.value,2)+'.jpg';
+
+	change_canv_img('#'+range_canv_id,img_path);
+	
+	};
+
 });
+
+
+
+
+
+class combined_visu_simple {
+	constructor(canv_id, root_dir) {
+		this.canvas = $(canv_id);
+		this.canv_id = canv_id;
+		this.root_dir = root_dir;
+		quadratic_canv(canv_id);
+		change_canv_img(this.canv_id, 'gfx/instruction.jpg')
+
+		 
+		 this.canvas[0].addEventListener('mousemove', e => {
+			var mouse = get_mouse_xy(this.canvas[0],e);
+			var grid_pos = [(mouse[0]/this.canvas.width()),(mouse[1]/this.canvas.height())];
+			this.update_image(grid_pos);
+		}, true);
+
+
+	  this.canvas[0].addEventListener('mouseout', e => {
+	  	change_canv_img(this.canv_id, 'gfx/instruction.jpg')
+	  }, true);
+
+		}
+
+	update_image(grid_pos) {
+		var num = 13;
+        var gy = Math.floor(grid_pos[0]*num);
+        var gx = Math.floor(grid_pos[1]*num);
+        var file_name = 'figs/'+this.root_dir+'/'+pad(gx,2)+'_'+pad(gy,2)+'.jpg';
+        change_canv_img(this.canv_id,file_name);
+
+	}
+
+    init() {
+        
+    }
+
+}
+
+
+
 
 
 
