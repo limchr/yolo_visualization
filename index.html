@@ -1,9 +1,23 @@
-<!doctype html>
-<meta charset="utf-8">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link href="style.css" rel="stylesheet">
-<title>YOLO - You only look 10647 times</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YOLO - You only look 10647 times">
+    <meta name="author" content="Christian Limberg">
+
+
+	<link href="style.css" rel="stylesheet">
+	<title>YOLO - You only look 10647 times</title>
+
+
+
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/grid_visu.js"></script>
+
+
 
 </head>
 
@@ -12,62 +26,62 @@
 <div id="outer">
 	<div id="inner">
 
-	
-	
+				
+				
 
-<h1>YOLO - You only look <strike>once</strike> 10647 times</h1>
-<!---  (52*52 + 13*13 + 26*26) * 3 = 10647 --->
+			<h1>YOLO - You only look <strike>once</strike> 10647 times</h1>
+			<!---  (52*52 + 13*13 + 26*26) * 3 = 10647 --->
 
-  
- 	  
-	  
-<h3>Authors: Christian Limberg, Andrew Melnik, Helge Ritter, Helmut Prendinger</h3>
-	  
-<h5>(currently in review for publication at ICONIP conference)</h5>
-	
-	  
-<h2>Abstract</h2>
-In this article we are revealing that the "You Only Look Once" (YOLO) single-stage object detection approach can be compared to a parallel classification of 10647 fixed region proposals. We support this narrative by showing by two complimentary approaches, that each of YOLOs output pixel is attentive to a specific sub-region of previous layers, comparable to a local region proposal. This understanding reduces the conceptual gap between YOLO-like single-stage object detection models, RCNN-like two-stage region proposal based models, and ResNet-like image classification models. This page shows interactive exploration tools and exported media for a better visual understanding of the YOLO information processing streams.
+			  
+				  
+				  
+			<h3>Authors: Christian Limberg, Andrew Melnik, Helge Ritter, Helmut Prendinger</h3>
+				  
+			<h5>(currently in review for publication at ICONIP conference)</h5>
+				
+				  
+			<h2>Abstract</h2>
+			In this article we are revealing that the "You Only Look Once" (YOLO) single-stage object detection approach can be compared to a parallel classification of 10647 fixed region proposals. We support this narrative by showing by two complimentary approaches, that each of YOLOs output pixel is attentive to a specific sub-region of previous layers, comparable to a local region proposal. This understanding reduces the conceptual gap between YOLO-like single-stage object detection models, RCNN-like two-stage region proposal based models, and ResNet-like image classification models. This page shows interactive exploration tools and exported media for a better visual understanding of the YOLO information processing streams.
 
 
 
 
-<div class="figure">
-	<a id="fig1"></a> 
-	<object data="figs/yolo_arc.svg" width="100%"></object>
+			<div class="figure">
+				<a id="fig1"></a> 
+				<object data="figs/yolo_arc.svg" width="100%"></object>
 
 
-	<h2>Figure 1</h2>
-	A simplified schematic of the YOLO.v4 network architecture. <a href="./figs/yolo_arc.svg">Download figure</a>
-</div>
+				<h2>Figure 1</h2>
+				A simplified schematic of the YOLO.v4 network architecture. <a href="./figs/yolo_arc.svg">Download figure</a>
+			</div>
 
 
 
-<div class="figure">
-	<a id="fig2"></a> 
-	<div class="size_select">
-		<img class="size_select_img" src="gfx/l.png" id="ss_13" onclick="combined.change_size('13')"></img>
-		<img class="size_select_img" src="gfx/m.png" id="ss_26" onclick="combined.change_size('26')"></img>
-		<img class="size_select_img" src="gfx/s.png" id="ss_52" onclick="combined.change_size('52')"></img>
-	</div>
+			<div class="figure">
+				<a id="fig2"></a> 
+				<div class="size_select">
+					<img class="size_select_img" src="gfx/l.png" id="ss_13" onclick="combined.change_size('13')"></img>
+					<img class="size_select_img" src="gfx/m.png" id="ss_26" onclick="combined.change_size('26')"></img>
+					<img class="size_select_img" src="gfx/s.png" id="ss_52" onclick="combined.change_size('52')"></img>
+				</div>
 
-	<div class="fig_select">
-		<img class="fig_select_img" src="figs/out_bb/0/base.jpg" id="fs_0" onclick="combined.change_image('0')"></img>
-		<img class="fig_select_img" src="figs/out_bb/1/base.jpg" id="fs_1" onclick="combined.change_image('1')"></img>
-		<img class="fig_select_img" src="figs/out_bb/2/base.jpg" id="fs_2" onclick="combined.change_image('2')"></img>
-		<img class="fig_select_img" src="figs/out_bb/3/base.jpg" id="fs_3" onclick="combined.change_image('3')"></img>
-		<img class="fig_select_img" src="figs/out_bb/4/base.jpg" id="fs_4" onclick="combined.change_image('4')"></img>
-		<img class="fig_select_img" src="figs/out_bb/5/base.jpg" id="fs_5" onclick="combined.change_image('5')"></img>
-	</div>
+				<div class="fig_select">
+					<img class="fig_select_img" src="figs/out_bb/0/base.jpg" id="fs_0" onclick="combined.change_image('0')"></img>
+					<img class="fig_select_img" src="figs/out_bb/1/base.jpg" id="fs_1" onclick="combined.change_image('1')"></img>
+					<img class="fig_select_img" src="figs/out_bb/2/base.jpg" id="fs_2" onclick="combined.change_image('2')"></img>
+					<img class="fig_select_img" src="figs/out_bb/3/base.jpg" id="fs_3" onclick="combined.change_image('3')"></img>
+					<img class="fig_select_img" src="figs/out_bb/4/base.jpg" id="fs_4" onclick="combined.change_image('4')"></img>
+					<img class="fig_select_img" src="figs/out_bb/5/base.jpg" id="fs_5" onclick="combined.change_image('5')"></img>
+				</div>
 
-	<canvas id="bbs" style="width:100%;"></canvas>
+				<canvas id="bbs" style="width:100%;"></canvas>
 
 
-	<h2> Figure 2</h2>
-	With our interactive visualization, the full grid layers of the YOLO.v4 network can be depicted for several images. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d-grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates of the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. The bounding boxes are labeled with the predicted class, the certainty value and an index of the displayed anchor box (we depict only the most confident anchor box out of the 3 possible). Object proposals with a high certainty are colored blue.
-	By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the respective output pixel and the detected bounding box of the most certain anchor box is visualized.
+				<h2> Figure 2</h2>
+				With our interactive visualization, the full grid layers of the YOLO.v4 network can be depicted for several images. The YOLO architecture has 3 different pathways for recognizing objects of different sizes. The recognition heads are located in 2d-grids of different resolutions. Each grid element can detect underlying objects based of 3 possible anchor box shapes. Each anchor box refines estimates of the x- and y-position, the width and the height, a confidence value and a probability vector of each class used for training. The bounding boxes are labeled with the predicted class, the certainty value and an index of the displayed anchor box (we depict only the most confident anchor box out of the 3 possible). Object proposals with a high certainty are colored blue.
+				By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the respective output pixel and the detected bounding box of the most certain anchor box is visualized.
 
-</div>
+			</div>
 
 
 
@@ -80,157 +94,147 @@ In this article we are revealing that the "You Only Look Once" (YOLO) single-sta
 
 
 
-<div class="figure">
-	<a id="fig3"></a> 
-	<div class="size_select">
-		<img class="size_select_img_2" src="gfx/l.png" id="ss_13_2" onclick="combined_shift.change_size('13')"></img>
-		<img class="size_select_img_2" src="gfx/m.png" id="ss_26_2" onclick="combined_shift.change_size('26')"></img>
-		<img class="size_select_img_2" src="gfx/s.png" id="ss_52_2" onclick="combined_shift.change_size('52')"></img>
-	</div>
+			<div class="figure">
+				<a id="fig3"></a> 
+				<div class="size_select">
+					<img class="size_select_img_2" src="gfx/l.png" id="ss_13_2" onclick="combined_shift.change_size('13')"></img>
+					<img class="size_select_img_2" src="gfx/m.png" id="ss_26_2" onclick="combined_shift.change_size('26')"></img>
+					<img class="size_select_img_2" src="gfx/s.png" id="ss_52_2" onclick="combined_shift.change_size('52')"></img>
+				</div>
 
-	<div class="fig_select">
-		<img class="fig_select_img_2" src="figs/out_bb/0/base.jpg" id="fs_0_2" onclick="combined_shift.change_image('0')"></img>
-		<img class="fig_select_img_2" src="figs/out_bb/1/base.jpg" id="fs_1_2" onclick="combined_shift.change_image('1')"></img>
-		<img class="fig_select_img_2" src="figs/out_bb/2/base.jpg" id="fs_2_2" onclick="combined_shift.change_image('2')"></img>
-		<img class="fig_select_img_2" src="figs/out_bb/3/base.jpg" id="fs_3_2" onclick="combined_shift.change_image('3')"></img>
-		<img class="fig_select_img_2" src="figs/out_bb/4/base.jpg" id="fs_4_2" onclick="combined_shift.change_image('4')"></img>
-		<img class="fig_select_img_2" src="figs/out_bb/5/base.jpg" id="fs_5_2" onclick="combined_shift.change_image('5')"></img>
-	</div>
+				<div class="fig_select">
+					<img class="fig_select_img_2" src="figs/out_bb/0/base.jpg" id="fs_0_2" onclick="combined_shift.change_image('0')"></img>
+					<img class="fig_select_img_2" src="figs/out_bb/1/base.jpg" id="fs_1_2" onclick="combined_shift.change_image('1')"></img>
+					<img class="fig_select_img_2" src="figs/out_bb/2/base.jpg" id="fs_2_2" onclick="combined_shift.change_image('2')"></img>
+					<img class="fig_select_img_2" src="figs/out_bb/3/base.jpg" id="fs_3_2" onclick="combined_shift.change_image('3')"></img>
+					<img class="fig_select_img_2" src="figs/out_bb/4/base.jpg" id="fs_4_2" onclick="combined_shift.change_image('4')"></img>
+					<img class="fig_select_img_2" src="figs/out_bb/5/base.jpg" id="fs_5_2" onclick="combined_shift.change_image('5')"></img>
+				</div>
 
-	<canvas id="shift" style="width:100%;"></canvas>
+				<canvas id="shift" style="width:100%;"></canvas>
 
-	<h2> Figure 3</h2>
-	Shifting the actual input image below the output pixels makes apparent how the confidences of the anchor boxes (blue means high confidence) are shifted and neighboring cells get activated.
-	By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the input image is shifted.
+				<h2> Figure 3</h2>
+				Shifting the actual input image below the output pixels makes apparent how the confidences of the anchor boxes (blue means high confidence) are shifted and neighboring cells get activated.
+				By the top button rows, the pathway and the input image to be visualized can be selected. By hovering over the figure, the input image is shifted.
 
-</div>
+			</div>
 
 
 
 
-<div class="figure">
-	<a id="fig4"></a> 
-	<div class="canvas_grid">
-			
-		<div></div> 
-		<div></div> 
-		<div style="text-align:center">X</div> 
-		<div style="text-align:center">Y</div> 
-		<div style="text-align:center">Width</div> 
-		<div style="text-align:center">Height</div> 
-		<div style="text-align:center">Confidence</div> 
-		<div style="text-align:center">Probability (for class person)</div>  
+			<div class="figure">
+				<a id="fig4"></a> 
+				<div class="canvas_grid">
+						
+					<div></div> 
+					<div></div> 
+					<div style="text-align:center">X</div> 
+					<div style="text-align:center">Y</div> 
+					<div style="text-align:center">Width</div> 
+					<div style="text-align:center">Height</div> 
+					<div style="text-align:center">Confidence</div> 
+					<div style="text-align:center">Probability (for class person)</div>  
 
-		<div><canvas id="select_canvas" class="canv_in_grid"></canvas></div>
-		<div style='text-align: right;'>Layer 75</div>
-		<div><canvas id="canvas_75_x" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_75_y" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_75_w" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_75_h" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_75_c" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_75_p" class="canv_in_grid"></canvas></div>
+					<div><canvas id="select_canvas" class="canv_in_grid"></canvas></div>
+					<div style='text-align: right;'>Layer 75</div>
+					<div><canvas id="canvas_75_x" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_75_y" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_75_w" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_75_h" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_75_c" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_75_p" class="canv_in_grid"></canvas></div>
 
-		<div></div>
-		<div style='text-align: right;'>Layer 103</div>
-		<div><canvas id="canvas_103_x" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_103_y" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_103_w" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_103_h" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_103_c" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_103_p" class="canv_in_grid"></canvas></div>
+					<div></div>
+					<div style='text-align: right;'>Layer 103</div>
+					<div><canvas id="canvas_103_x" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_103_y" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_103_w" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_103_h" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_103_c" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_103_p" class="canv_in_grid"></canvas></div>
 
-		<div></div>
-		<div style='text-align: right;'>Layer 104</div>
-		<div><canvas id="canvas_104_x" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_104_y" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_104_w" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_104_h" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_104_c" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_104_p" class="canv_in_grid"></canvas></div>
+					<div></div>
+					<div style='text-align: right;'>Layer 104</div>
+					<div><canvas id="canvas_104_x" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_104_y" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_104_w" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_104_h" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_104_c" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_104_p" class="canv_in_grid"></canvas></div>
 
-		<div></div>
-		<div style='text-align: right;'>Layer 105</div>
-		<div><canvas id="canvas_105_x" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_105_y" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_105_w" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_105_h" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_105_c" class="canv_in_grid"></canvas></div>
-		<div><canvas id="canvas_105_p" class="canv_in_grid"></canvas></div>
+					<div></div>
+					<div style='text-align: right;'>Layer 105</div>
+					<div><canvas id="canvas_105_x" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_105_y" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_105_w" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_105_h" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_105_c" class="canv_in_grid"></canvas></div>
+					<div><canvas id="canvas_105_p" class="canv_in_grid"></canvas></div>
 
 
-	</div>
-		
+				</div>
+					
 
-	<h2> Figure 4</h2>
-	Our adapted Detection Grad Cam visualizes the saliency map of a single output neuron. The columns represent the saliency maps of the x-shift, y-shift, width, height, confidence and probability neuron of a selected output pixel of the large pathway (13x13 output pixels). As rows, we depict saliency maps for convolutional layers 75, 103, 104 and 105. Each plot represents the saliency map averaged over 15 images (15x13x13) having class "person" under the corresponding output pixel's position.
-	By hovering over the left area, a spatial output pixel can be selected. The saliency maps for the different layers and output neurons of the selected output pixel are visualized.
+				<h2> Figure 4</h2>
+				Our adapted Detection Grad Cam visualizes the saliency map of a single output neuron. The columns represent the saliency maps of the x-shift, y-shift, width, height, confidence and probability neuron of a selected output pixel of the large pathway (13x13 output pixels). As rows, we depict saliency maps for convolutional layers 75, 103, 104 and 105. Each plot represents the saliency map averaged over 15 images (15x13x13) having class "person" under the corresponding output pixel's position.
+				By hovering over the left area, a spatial output pixel can be selected. The saliency maps for the different layers and output neurons of the selected output pixel are visualized.
 
-</div>
+			</div>
 
 
 
-<div class="figure">
-	<a id="fig5"></a> 
-	
-	<iframe width="100%" height="616" src="https://www.youtube-nocookie.com/embed/8nI3izOaWV8" title="YouTube video player" frameborder="0" allow="repeat; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	
-	
-		<h2> Figure 5</h2>
-	Video demonstrating the optimization process of several classes of the COCO data set by our proposed deep detection dream approach. 
-	
-</div>
+			<div class="figure">
+				<a id="fig5"></a> 
+				
+				<iframe width="100%" height="616" src="https://www.youtube-nocookie.com/embed/8nI3izOaWV8" title="YouTube video player" frameborder="0" allow="repeat; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				
+				
+					<h2> Figure 5</h2>
+				Video demonstrating the optimization process of several classes of the COCO data set by our proposed deep detection dream approach. 
+				
+			</div>
 
 
-<div class="figure">
-	<a id="fig6"></a> 
-	
-	<canvas id="optloc" style="width:100%;"></canvas>
+			<div class="figure">
+				<a id="fig6"></a> 
+				
+				<canvas id="optloc" style="width:100%;"></canvas>
 
-	
-		<h2> Figure 6</h2>
-By our proposed deep detection dream approach, we can generate objects in specific spatial image regions. By hovering over the image, a spatial output pixel can be selected. The image is then optimized for containing an object at this position.
-	
-</div>
+				
+					<h2> Figure 6</h2>
+			By our proposed deep detection dream approach, we can generate objects in specific spatial image regions. By hovering over the image, a spatial output pixel can be selected. The image is then optimized for containing an object at this position.
+				
+			</div>
 
 
 
-<div class="figure">
-	<a id="fig7"></a> 
-	
-	<canvas id="opt_height" style="width:100%;"></canvas>
+			<div class="figure">
+				<a id="fig7"></a> 
+				
+				<canvas id="opt_height" style="width:100%;"></canvas>
 
-<div class="slidecontainer">
-  <input type="range" min="0" max="9" value="5" class="slider" id="height_slide">
-</div>
+			<div class="slidecontainer">
+			  <input type="range" min="0" max="9" value="4" class="slider" id="height_slide">
+			</div>
 
 
-		<h2> Figure 7</h2>
-By our proposed detection dream approach, we can generate objects with specific attributes like in this case an adjustable height. By dragging the slider below the image, the object of class person is adjusted for having a height from 10% to 100% of the image height.
-	
-</div>
+					<h2> Figure 7</h2>
+			By our proposed detection dream approach, we can generate objects with specific attributes like in this case an adjustable height. By dragging the slider below the image, the object of class person is adjusted for having a height from 10% to 100% of the image height.
+				
+			</div>
 
 
 
 
 
 
-</div> <!-- inner -->
+		</div> <!-- inner -->
 
 
-</div> <!-- outer -->
-
-
-
+	</div> <!-- outer -->
 
 
 </body>
-
-
-
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/grid_visu.js"></script>
-
-
 
 
 </html>
