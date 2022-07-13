@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-	opt_loc = new combined_visu_simple('#optloc','opt_loc/bicycle');
+	opt_loc = new combined_visu_simple('#optloc','opt_loc/zebra');
 
 
 var range_canv_id = 'opt_height';
